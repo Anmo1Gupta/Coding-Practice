@@ -1,0 +1,7 @@
+
+# excluding the .vscode configs and Jupyter configs for a cleaner sub-directory
+
+*\.vscode\
+*\.vs\
+*\.ipynb_checkpoints\
+Python\__pycache__
