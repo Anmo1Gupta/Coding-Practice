@@ -1,5 +1,3 @@
-// C++ program to demonstrate insertion 
-// in a BST recursively. 
 #include <bits/stdc++.h> 
 using namespace std; 
 
@@ -11,16 +9,13 @@ class BST
 	int data,leftSize,rightSize; 
 	BST *left, *right; 
 
-	// Default constructor. 
+	
 	BST(); 
 	
-	// Parameterized constructor. 
 	BST(int); 
 	
-	// Insert function. 
 	BST* Insert(BST *, int); 
 	
-	// Inorder traversal. 
 	void Inorder(BST *); 
 	
 	int size(BST *);
@@ -28,13 +23,13 @@ class BST
 	int getSizeRight(BST *);
 	void updateSizeLeft(BST *);
 	void updateSizeRight(BST *);
-	void updateSizes(BST *, int value);
+// 	void updateSizes(BST *, int value);
 }; 
 
-// Default Constructor definition. 
+// Default Constructor
 BST :: BST() : data(0), leftSize(0), rightSize(0), left(NULL), right(NULL){} 
 
-// Parameterized Constructor definition. 
+// Parameterized Constructor 
 BST :: BST(int value) 
 { 
 	data = value; 
@@ -48,35 +43,25 @@ BST* BST :: Insert(BST *root, int value)
 { 
 	if(!root) 
 	{ 
-		// Insert the first node, if root is NULL. 
+		
 		return new BST(value); 
 	} 
 
-	// Insert data. 
 	if(value > root->data) 
 	{ 
-		// Insert right node data, if the 'value' 
-		// to be inserted is greater than 'root' node data. 
-		
-		// Process right nodes. 
 		root->right = Insert(root->right, value); 
+		updateSizeRight(root->right); //Updating the sizes after every insertion.
 	} 
 	else
 	{ 
-		// Insert left node data, if the 'value' 
-		// to be inserted is greater than 'root' node data. 
-		
-		// Process left nodes. 
 		root->left = Insert(root->left, value); 
+		updateSizeLeft(root->left); //Updating the sizes after every insertion.
 	} 
 	
-	updateSizes(root,value);
-	// Return 'root' node, after insertion. 
 	return root; 
 } 
 
-// Inorder traversal function. 
-// This gives data in sorted order. 
+
 void BST :: Inorder(BST *root) 
 { 
 	if(!root) 
@@ -121,7 +106,6 @@ void BST :: updateSizeLeft(BST* root)
 	updateSizeLeft(root->left); 
 	root->leftSize = getSizeLeft(root);
 	updateSizeLeft(root->right); 
-	root->leftSize = getSizeLeft(root);
 } 
 
 void BST :: updateSizeRight(BST* root) 
@@ -130,28 +114,26 @@ void BST :: updateSizeRight(BST* root)
 	{ 
 		return; 
 	} 
-	root->rightSize = getSizeRight(root);
 	updateSizeRight(root->left); 
-// 	root->rightSize = getSizeRight(root);
+	root->rightSize = getSizeRight(root);
 	updateSizeRight(root->right); 
-// 	root->rightSize = getSizeRight(root);
 }
 
-void BST :: updateSizes(BST* root, int value){
-   if(value > root->data) 
-	{ 
-	    updateSizeRight(root->right);
-	} 
-	else
-	{ 
-		updateSizeLeft(root->left);
-	} 
-	if(root->data == value) 
-	{ 
-		//Do nothing
-// 		continue;
-	} 
-}
+// void BST :: updateSizes(BST* root, int value){
+//   if(value > root->data) 
+// 	{ 
+// 	    updateSizeRight(root->right);
+// 	} 
+// 	else
+// 	{ 
+// 		updateSizeLeft(root->left);
+// 	} 
+// 	if(root->data == value) 
+// 	{ 
+        // root->leftSize = 0;
+        // root->rightSize = 0;
+// 	} 
+// }
 
 int main() 
 { 
