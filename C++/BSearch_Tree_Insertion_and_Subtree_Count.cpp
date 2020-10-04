@@ -5,10 +5,8 @@ class BST
 { 
     public:
     
-    
-	int data,leftSize,rightSize; 
+    int data,leftSize,rightSize; 
 	BST *left, *right; 
-
 	
 	BST(); 
 	
